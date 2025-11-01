@@ -218,7 +218,7 @@ JOIN Cliente c ON s.IDCliente = c.IDCliente
 JOIN Proveedor p ON s.IDProveedor = p.IDProveedor;
 
 
--- Ver solo los proveedores con calificacion promedio entre 4-5 electrisitas 
+-- Ver solo los proveedores con su promedio calificacion
 Select p.nombre + ' ' + p.apellido as Proveedor, o.nombreoficio as oficio, p.promediocalificacion from Proveedor p 
 JOIN oficio o on p.IDOficio = o.IDOficio;
 
@@ -267,6 +267,7 @@ Select c.Nombre + ' ' + c.Apellido as Cliente, COUNT(S.IDCLIENTE) as CantidadSol
 From cliente c 
 JOIN SolicitudServicio s on c.IDCliente = s.IDCliente
 Group by c.nombre, c.Apellido;
+
 
 
 
