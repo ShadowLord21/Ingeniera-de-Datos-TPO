@@ -228,7 +228,7 @@ Select	c.Nombre + ' ' + c.Apellido as Cliente, d.descripcion as reseñas, p.nomb
 JOIN SolicitudServicio s on p.IDProveedor = s.IDProveedor 
 JOIN Detalle d on d.IDSolicitud = s.IDSolicitud
 JOIN Cliente c on c.IDCliente = s.IDCliente
-where p.nombre = 'Carlos';
+where p.nombre = 'Carlos' and p.apellido = 'Ramírez';
 
 --Ver las solicitudes que estan pendientes
 Select c.Nombre + ' ' + c.Apellido as Cliente, s.Estado , p.nombre + ' ' + p.apellido as Proveedor, s.DescripcionTarea from Proveedor p
@@ -251,9 +251,9 @@ JOIN Cliente c on c.IDCliente = s.IDCliente
 Where s.Estado = 'Finalizado' AND s.FechaFin BETWEEN '2025-09-01' AND '2025-09-30';
 
 --Devolver proveedores con menos de 7años de experiencia
-Select nombre + ' ' + apellido as Proveedor, ExperienciaAnios from Proveedor 
+Select p.nombre + ' ' + p.apellido as Proveedor, ExperienciaAnios, o.nombreoficio as Oficio From Proveedor p
+JOIN Oficio o on p.IDOficio = o.IDOficio
 Where ExperienciaAnios <= 7;
-
 
 --Devolver todos los plomeros que trabajen full time
 Select p.nombre + ' ' + p.apellido as Proveedor, o.NombreOficio as Oficio, p.disponibilidadhoraria
@@ -267,6 +267,7 @@ Select c.Nombre + ' ' + c.Apellido as Cliente, COUNT(S.IDCLIENTE) as CantidadSol
 From cliente c 
 JOIN SolicitudServicio s on c.IDCliente = s.IDCliente
 Group by c.nombre, c.Apellido;
+
 
 
 
