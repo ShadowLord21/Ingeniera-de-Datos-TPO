@@ -651,12 +651,12 @@ JOIN Cliente c ON s.IDCliente = c.IDCliente
 JOIN Proveedor p ON s.IDProveedor = p.IDProveedor;
 
 
------------------------------------------------------------------------------------
--- Ver el ultimo cliente antedido de cada proveedor y la calificacion del proveedor
------------------------------------------------------------------------------------
+---------------------------------------------------
+-- Ver el ultimo cliente antedido de cada proveedor
+---------------------------------------------------
 
 SELECT 
-    p.Nombre + ' ' + p.Apellido AS Proveedor, o.NombreOficio AS Oficio, d.CalificacionProveedor,
+    p.Nombre + ' ' + p.Apellido AS Proveedor, o.NombreOficio AS Oficio,
     (SELECT TOP 1 c.Nombre + ' ' + c.Apellido
      FROM SolicitudServicio s
      JOIN Cliente c ON c.IDCliente = s.IDCliente
@@ -665,10 +665,7 @@ SELECT
     ) AS UltimoCliente
 
 FROM Proveedor p
-JOIN Oficio o ON p.IDOficio = o.IDOficio
-JOIN SolicitudServicio s on s.IDProveedor = p.IDProveedor
-JOIN Detalle d on d.IDSolicitud = s.IDSolicitud
-ORDER by d.CalificacionProveedor DESC;
+JOIN Oficio o ON p.IDOficio = o.IDOficio;
 
 ------------------------------------------------------------------
 --Ver las reseñas que le dejaron a Carlos Ramirez en sus trabajos 
@@ -795,5 +792,6 @@ where c.PromedioCalificacion = 5);
 
 
 SELECT * FROM ClientesPremium;
+
 
 
