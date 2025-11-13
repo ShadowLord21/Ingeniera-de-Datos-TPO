@@ -162,10 +162,6 @@ END;
 GO
 
 
-DISABLE TRIGGER automaticaFechaFin ON SolicitudServicio;
-
-
-
 ---------------------------------------------------------------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------------------------------------------
@@ -255,27 +251,26 @@ GO
 
 EXEC actualizarEstadoSolicitud 5, 'Finalizado';
 
-EXEC agregarSolicitud 1, 1, 1, 'Instalar luces LED en cocina y living.', 'Finalizado', '2026-02-04', NULL;
-EXEC agregarSolicitud 2, 2, 2, 'Reparar pérdida de agua en baño.', 'Finalizado', '2026-02-05', '2026-02-06';
-EXEC agregarSolicitud 3, 3, 3, 'Pintar dormitorio principal.', 'En Progreso', '2026-02-10', NULL;
-EXEC agregarSolicitud 1, 4, 4, 'Construir estante de madera.', 'Pendiente', NULL, NULL;
-EXEC agregarSolicitud 4, 5, 5, 'Podar árboles del jardín.', 'Finalizado', '2026-02-15', '2026-02-16';
-EXEC agregarSolicitud 5, 6, 6, 'Abrir cerradura trabada.', 'Finalizado', '2026-02-18', '2026-02-18';
-EXEC agregarSolicitud 6, 7, 7, 'Revisión de instalación de gas.', 'Finalizado', '2026-02-20', '2026-02-21';
-EXEC agregarSolicitud 7, 8, 8, 'Colocar cerámicos en baño.', 'En Progreso', '2026-02-25', NULL;
-EXEC agregarSolicitud 8, 9, 9, 'Reparar filtración en techo.', 'Pendiente', NULL, NULL;
-EXEC agregarSolicitud 9, 10, 10, 'Soldar portón de entrada.', 'Finalizado', '2026-02-28', '2026-03-01';
-EXEC agregarSolicitud 10, 11, 11, 'Reemplazar vidrio de ventana.', 'Finalizado', '2026-03-02', '2026-03-03';
-EXEC agregarSolicitud 1, 12, 12, 'Corte y color completo.', 'Finalizado', '2026-03-04', '2026-03-04';
-EXEC agregarSolicitud 12, 13, 13, 'Cambio de bujías y aceite.', 'Finalizado', '2026-03-05', '2026-03-06';
-EXEC agregarSolicitud 13, 14, 14, 'Pasear perro 2 horas.', 'Finalizado', '2026-03-07', '2026-03-07';
-EXEC agregarSolicitud 14, 15, 15, 'Revisión de notebook.', 'Pendiente', NULL, NULL;
-EXEC agregarSolicitud 1, 1, 1, 'Revisar instalación eléctrica completa.', 'Finalizado', '2026-03-09', '2026-03-10';
-EXEC agregarSolicitud 2, 2, 2, 'Instalar nuevo termotanque.', 'Finalizado', '2026-03-11', '2026-03-12';
-EXEC agregarSolicitud 1, 3, 3, 'Pintar cocina y pasillo.', 'En Progreso', '2026-03-15', NULL;
-EXEC agregarSolicitud 1, 9, 9, 'Reparar gotera en techo.', 'Finalizado', '2026-03-20', '2026-03-21';
-EXEC agregarSolicitud 3, 4, 4, 'Armar mueble modular.', 'Pendiente', NULL, NULL;
-
+EXEC agregarSolicitud 1,1,1,'Instalar luces LED en cocina y living.','Finalizado','2024-01-10','2024-01-11', NULL;
+EXEC agregarSolicitud 2,2,2,'Reparar pérdida de agua en baño.','Finalizado','2024-01-14','2024-01-15','2024-01-16';
+EXEC agregarSolicitud 3,3,3,'Pintar dormitorio principal.','En Progreso','2024-01-18','2024-01-19',NULL;
+EXEC agregarSolicitud 1,4,4,'Construir estante de madera.','Pendiente','2024-01-20',NULL,NULL;
+EXEC agregarSolicitud 4,5,5,'Podar árboles del jardín.','Finalizado','2024-01-22','2024-01-23','2024-01-24';
+EXEC agregarSolicitud 5,6,6,'Abrir cerradura trabada.','Finalizado','2024-01-25','2024-01-25','2024-01-26';
+EXEC agregarSolicitud 6,7,7,'Revisión de instalación de gas.','Finalizado','2024-01-27','2024-01-28','2024-01-29';
+EXEC agregarSolicitud 7,8,8,'Colocar cerámicos en baño.','En Progreso','2024-02-01','2024-02-02',NULL;
+EXEC agregarSolicitud 8,9,9,'Reparar filtración en techo.','Pendiente','2024-02-03',NULL,NULL;
+EXEC agregarSolicitud 9,10,10,'Soldar portón de entrada.','Finalizado','2024-02-05','2024-02-06','2024-02-07';
+EXEC agregarSolicitud 10,11,11,'Reemplazar vidrio de ventana.','Finalizado','2024-02-09','2024-02-10','2024-02-11';
+EXEC agregarSolicitud 1,12,12,'Corte y color completo.','Finalizado','2024-02-12','2024-02-12','2024-02-13';
+EXEC agregarSolicitud 12,13,13,'Cambio de bujías y aceite.','Finalizado','2024-02-14','2024-02-15','2024-02-16';
+EXEC agregarSolicitud 13,14,14,'Pasear perro 2 horas.','Finalizado','2024-02-18','2024-02-18','2024-02-19';
+EXEC agregarSolicitud 14,15,15,'Revisión de notebook.','Pendiente','2024-02-20',NULL,NULL;
+EXEC agregarSolicitud 1,1,1,'Revisar instalación eléctrica completa.','Finalizado','2024-02-22','2024-02-23','2024-02-24';
+EXEC agregarSolicitud 2,2,2,'Instalar nuevo termotanque.','Finalizado','2024-02-25','2024-02-26','2024-02-27';
+EXEC agregarSolicitud 1,3,3,'Pintar cocina y pasillo.','En Progreso','2024-03-01','2024-03-02',NULL;
+EXEC agregarSolicitud 1,9,9,'Reparar gotera en techo.','Finalizado','2024-03-03','2024-03-04','2024-03-05';
+EXEC agregarSolicitud 3,4,4,'Armar mueble modular.','Pendiente','2024-03-06',NULL,NULL;
 GO
 
 
@@ -307,8 +302,6 @@ EXEC agregarDetalle 19, 'Reparación rápida y efectiva.', 5, 5, '2024-03-21';
 EXEC agregarDetalle 20, 'Aún sin realizar.', NULL, NULL, '2024-03-21';
 GO
 
-SELECT * FROM SolicitudServicio;
-SELECT * FROM Detalle;
 ------------------------------------------------------------------------------------------------------------------------------
 
 --														CRUD
@@ -724,3 +717,4 @@ where c.PromedioCalificacion = 5);
 
 
 SELECT * FROM ClientesPremium;
+
