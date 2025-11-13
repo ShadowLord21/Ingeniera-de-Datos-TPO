@@ -1,3 +1,5 @@
+CREATE DATABASE SQLTPO;
+
 USE SQLTPO;
 
 
@@ -232,7 +234,7 @@ EXEC agregarProveedor 'Martina', 'Bianchi', '40123490', 10, 'martina.bianchi@gma
 EXEC agregarProveedor 'Paula', 'Silva', '39567845', 11, 'paula.silva@gmail.com', 114567899, '1989-10-04', 'Vidriera profesional.', 'CABA', 6, 'Lunes a Viernes 9-16h', 'Activo';
 EXEC agregarProveedor 'Nahuel', 'Torres', '37777888', 12, 'nahuel.torres@gmail.com', 117895432, '1993-06-03', 'Peluquero con 8 años de experiencia.', 'Palermo', 8, 'Martes a Domingo 10-20h', 'Activo';
 EXEC agregarProveedor 'Lucía', 'Morales', '36234567', 13, 'lucia.morales@gmail.com', 118765432, '1994-03-01', 'Mecánica especializada en autos.', 'Avellaneda', 6, 'Lunes a Sábado 9-19h', 'Activo';
-EXEC agregarProveedor 'Bruno', 'Acosta', '38678912', 14, 'bruno.acosta@gmail.com', 115673209, '1985-09-06', 'Paseador con experiencia en animales grandes.', 'Caballito', 9, 'Todos los días 8-20h', 'Activo';
+EXEC agregarProveedor 'Bruno', 'Acosta', '38678912', 14, 'bruno.acosta@gmail.com', 115673209, '1985-09-06', 'Paseador con experiencia en animales grandes.', 'Caba', 9, 'Todos los días 8-20h', 'Activo';
 EXEC agregarProveedor 'Cintia', 'Rey', '39456712', 15, 'cintia.rey@gmail.com', 114567892, '1992-05-27', 'Soporte técnico IT a domicilio.', 'CABA', 4, 'Lunes a Viernes 10-18h', 'Activo';
 GO
 
@@ -276,7 +278,7 @@ EXEC agregarDetalle 5, 'Mal servicio Excelente trabajo prolijo y rápido', 5, 5,
 EXEC agregarDetalle 2, 'Muy buena atención, resolvió rápido.', 4, 5, '2024-02-07';
 EXEC agregarDetalle 3, 'Buen avance, aún falta terminar.', 4, NULL, '2024-02-11';
 EXEC agregarDetalle 4, 'Pendiente de realización.', NULL, NULL, '2024-02-10';
-EXEC agregarDetalle 5, 'Muy conforme con el resultado.', 5, 5, '2024-02-16';
+EXEC agregarDetalle 1, 'Muy conforme con el resultado.', 5, 5, '2024-02-16';
 EXEC agregarDetalle 6, 'Llegó rápido y resolvió el problema.', 5, 5, '2024-02-18';
 EXEC agregarDetalle 7, 'Excelente gasista, muy profesional.', 5, 5, '2024-02-21';
 EXEC agregarDetalle 8, 'Va bien el trabajo.', 4, 4, '2024-02-26';
@@ -307,10 +309,19 @@ CREATE PROCEDURE agregarOficio
     @Descripcion NVARCHAR(200)
 AS
 BEGIN
-    INSERT INTO Oficio (NombreOficio, Descripcion)
-    VALUES (@NombreOficio, @Descripcion);
+    INSERT INTO Oficio 
+	(
+		NombreOficio, 
+		Descripcion
+	)
+    VALUES 
+	(
+		@NombreOficio, 
+		@Descripcion
+	);
 END;
 
+GO
 
 CREATE PROCEDURE BorrarOficio
 -- lo mismo que antes
@@ -337,6 +348,7 @@ BEGIN
     WHERE IDOficio = @IDOficio;
 END;
 
+GO
 
 -----------------------------------------------------------
 -- CRUD CLIENTE
@@ -352,6 +364,7 @@ BEGIN
 	WHERE IDCliente = @IDCliente; --Lo mismo solo que este es para buscar en vez de reemplazar.
 END;
 
+GO
 
 CREATE or ALTER PROCEDURE agregarCliente
 	@Nombre NVARCHAR(100),
@@ -361,9 +374,25 @@ CREATE or ALTER PROCEDURE agregarCliente
 	@Telefono INT
 AS
 BEGIN
-	INSERT INTO Cliente (Nombre, Apellido, DNI, Email, Telefono)
-	VALUES (@Nombre, @Apellido, @DNI, @Email, @Telefono)
+	INSERT INTO Cliente 
+	(
+		Nombre, 
+		Apellido, 
+		DNI, 
+		Email, 
+		Telefono
+	)
+	VALUES 
+	(
+		@Nombre,
+		@Apellido,
+		@DNI, 
+		@Email,
+		@Telefono
+	)
 END;
+
+GO
 
 
 -----------------------------------------------------------
@@ -381,7 +410,7 @@ BEGIN
     WHERE IDProveedor = @IDProveedor;
 END;
 
-
+GO
 CREATE PROCEDURE agregarProveedor
     @Nombre NVARCHAR(100),
     @Apellido NVARCHAR(100),
@@ -397,11 +426,39 @@ CREATE PROCEDURE agregarProveedor
     @Estado VARCHAR(10)
 AS
 BEGIN
-    INSERT INTO Proveedor (Nombre, Apellido, DNI, IDOficio, Email, Telefono, FechaNacimiento, DescripcionPersonal, ZonaCobertura, ExperienciaAnios, DisponibilidadHoraria, Estado)
-    VALUES (@Nombre, @Apellido, @DNI, @IDOficio, @Email, @Telefono, @FechaNacimiento, @DescripcionPersonal, @ZonaCobertura, @ExperienciaAnios, @DisponibilidadHoraria, @Estado);
+    INSERT INTO Proveedor 
+	(
+		Nombre, 
+		Apellido, 
+		DNI, 
+		IDOficio, 
+		Email, 
+		Telefono, 
+		FechaNacimiento, 
+		DescripcionPersonal, 
+		ZonaCobertura, 
+		ExperienciaAnios, 
+		DisponibilidadHoraria, 
+		Estado
+	)
+    VALUES 
+	(
+		@Nombre, 
+		@Apellido,
+		@DNI, 
+		@IDOficio, 
+		@Email, 
+		@Telefono,
+		@FechaNacimiento, 
+		@DescripcionPersonal, 
+		@ZonaCobertura, 
+		@ExperienciaAnios,
+		@DisponibilidadHoraria, 
+		@Estado
+	);
 END;
 
-
+GO
 -----------------------------------------------------------
 -- CRUD SOLICITUDSERVICIO
 -----------------------------------------------------------
@@ -417,7 +474,7 @@ BEGIN
     WHERE IDSolicitud = @IDSolicitud;
 END;
 
-
+GO
 
 CREATE OR ALTER PROCEDURE agregarSolicitud
     @IDCliente INT,
@@ -425,6 +482,7 @@ CREATE OR ALTER PROCEDURE agregarSolicitud
     @IDOficio INT,
     @DescripcionTarea NVARCHAR(1000),
     @Estado VARCHAR(15),
+	@fechaSolicitud DATETIME,
     @FechaInicio DATETIME = NULL,
     @FechaFin DATETIME = NULL
 AS
@@ -434,9 +492,9 @@ BEGIN
         IDCliente, 
         IDProveedor, 
         IDOficio,
-        FechaSolicitud,
         DescripcionTarea,
         Estado,
+		FechaSolicitud,
         FechaInicio,
         FechaFin
     )
@@ -445,9 +503,9 @@ BEGIN
         @IDCliente, 
         @IDProveedor, 
         @IDOficio,
-        SYSDATETIME(),
         @DescripcionTarea, 
         @Estado, 
+		@fechaSolicitud,
         @FechaInicio, 
         @FechaFin
     );
@@ -471,6 +529,7 @@ BEGIN
     WHERE IDDetalle = @IDDetalle;
 END;
 
+GO
 
 CREATE or ALTER PROCEDURE agregarDetalle
     @IDSolicitud INT,
@@ -480,30 +539,53 @@ CREATE or ALTER PROCEDURE agregarDetalle
 	@FechaHora DATETIME
 AS
 BEGIN
-    INSERT INTO Detalle (IDSolicitud, Descripcion, CalificacionCliente, CalificacionProveedor, FechaHora)
-    VALUES (@IDSolicitud, @Descripcion, @CalificacionCliente, @CalificacionProveedor, @FechaHora);
+    INSERT INTO Detalle 
+	(
+		IDSolicitud, 
+		Descripcion, 
+		CalificacionCliente, 
+		CalificacionProveedor, 
+		FechaHora
+	)
+    VALUES 
+	(
+		@IDSolicitud, 
+		@Descripcion,
+		@CalificacionCliente, 
+		@CalificacionProveedor,
+		@FechaHora
+	);
 END;
 
+GO
 
 -------------------------------------------------
 --DEFINICION DE PROCEDIMIENTO ALMACENADO GENERAL
 -------------------------------------------------
 
-CREATE PROCEDURE solicitudesPorCliente
-    @IDCliente INT
+CREATE OR ALTER PROCEDURE LeerProveedoresPorZona
+(
+    @Zona NVARCHAR(100)
+)
 AS
 BEGIN
-    SELECT S.IDSolicitud, O.NombreOficio, S.Estado, S.FechaSolicitud, S.DescripcionTarea
-    FROM SolicitudServicio S
-    JOIN Oficio O ON S.IDOficio = O.IDOficio
-    WHERE S.IDCliente = @IDCliente;
+    SELECT 
+        IDProveedor,
+        Nombre,
+        Apellido,
+        Email,
+        Telefono,
+        ZonaCobertura,
+        DisponibilidadHoraria,
+        PromedioCalificacion
+    FROM Proveedor
+    WHERE ZonaCobertura LIKE '%' + @Zona + '%';
 END;
-
-
-EXEC solicitudesPorCliente 5;
-
-
-
+GO
+EXEC LeerProveedoresPorZona 'CABA';
+EXEC LeerProveedoresPorZona 'Norte';
+EXEC LeerProveedoresPorZona 'Oeste';
+GO
 ------------------------------------------------------------------------------------------------------------------------------
 
 --													  FUNCION
@@ -519,7 +601,7 @@ BEGIN
         CASE
             WHEN FechaInicio IS NOT NULL AND FechaFin IS NOT NULL
                  AND FechaFin >= FechaInicio
-            THEN DATEDIFF(DAY, FechaInicio, FechaFin)
+            THEN DATEDIFF(DAY, FechaInicio, FechaFin) + 1 
             ELSE 0 -- servicios sin terminar o sin datos válidos
         END
     )
@@ -589,7 +671,7 @@ JOIN Detalle d on d.IDSolicitud = s.IDSolicitud
 ORDER by d.CalificacionProveedor DESC;
 
 ------------------------------------------------------------------
---Ver las rese�as que le dejaron a Carlos Ramirez en sus trabajos
+--Ver las reseñas que le dejaron a Carlos Ramirez en sus trabajos 
 ------------------------------------------------------------------
 
 
@@ -597,7 +679,7 @@ Select	c.Nombre + ' ' + c.Apellido as Cliente, d.descripcion as reseñas, p.nomb
 JOIN SolicitudServicio s on p.IDProveedor = s.IDProveedor 
 JOIN Detalle d on d.IDSolicitud = s.IDSolicitud
 JOIN Cliente c on c.IDCliente = s.IDCliente
-where p.nombre = 'Carlos' and p.apellido = 'Ramirez';
+where p.nombre = 'Carlos' and p.apellido = 'Ramírez';
 
 
 -----------------------------------------------------------------
@@ -621,8 +703,9 @@ group by p.promediocalificacion, p.nombre, p.Apellido
 ORDER by COUNT(s.IDCliente) DESC, p.promediocalificacion DESC;
 
 
+
 --------------------------------------------------------------------
---Devolver las solicitudes finalizadas en el mes septiembre de 2025
+--Devolver las solicitudes finalizadas en el mes septiembre de 2024
 --------------------------------------------------------------------
 
 
@@ -630,11 +713,11 @@ Select c.Nombre + ' ' + c.Apellido as Cliente, s.Estado , p.nombre + ' ' + p.ape
 From Proveedor p 
 JOIN SolicitudServicio s on p.IDProveedor = s.IDProveedor 
 JOIN Cliente c on c.IDCliente = s.IDCliente
-Where s.Estado = 'Finalizado' AND s.FechaFin BETWEEN '2026-03-01' AND '2026-03-31';
+Where s.Estado = 'Finalizado' AND s.FechaFin BETWEEN '2024-03-01' AND '2024-03-31';
 
 
 ----------------------------------------------------------
---Devolver proveedores con menos de 7a�os de experiencia
+--Devolver proveedores con menos de 7años de experiencia y su oficio
 ----------------------------------------------------------
 
 
@@ -680,6 +763,8 @@ FROM Proveedor
 JOIN Oficio on Oficio.IDOficio = Proveedor.IDOficio
 WHERE Oficio.NombreOficio = 'Plomero' and Proveedor.PromedioCalificacion > 3; 
 
+
+GO
 Select * from OficioPremium;
 
 --Vista para mostrar los oficios con mayor demanda (los primeros 3 que tengas mas solicitudes de servicio)
@@ -698,6 +783,7 @@ Select * from OficioConMayorDemanda;
 
 
 --Vista para mostrar a los clientes mas calificados (premium) los proveedores mejores calificados
+
 
 CREATE VIEW ClientesPremium AS
 SELECT P.IDProveedor, P.Nombre, P.Apellido, P.DNI, P.IDOficio, P.Email, P.Telefono, P.FechaNacimiento,
